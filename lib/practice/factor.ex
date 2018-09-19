@@ -1,13 +1,15 @@
-defmodule Practice.Calc do
+defmodule Practice.Factor do
   def parse_float(text) do
     {num, _} = Float.parse(text)
     num
   end
 
-  def calc(expr) do
+
+  # TODO prime factor function, look over other requirements
+  def factor(x) do
     # This should handle +,-,*,/ with order of operations,
     # but doesn't need to handle parens.
-    expr
+    x
     |> String.split(~r/\s+/)
     |> hd
     |> parse_float
