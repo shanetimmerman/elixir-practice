@@ -23,6 +23,7 @@ defmodule Practice do
 
   # TODO: Add a palindrome? function.
   def palindrome(str) do
-    String.reverse(str) == str
+    s = String.trim(str)
+    String.reverse(s) == s
   end
 end
