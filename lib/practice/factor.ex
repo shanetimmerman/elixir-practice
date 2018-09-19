@@ -4,10 +4,6 @@ defmodule Practice.Calc do
     num
   end
 
-  def parse_char(text) do
-    case Float.parse(text) do
-      parse_float(text)
-
   def calc(expr) do
     # This should handle +,-,*,/ with order of operations,
     # but doesn't need to handle parens.
