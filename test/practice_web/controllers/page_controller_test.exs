@@ -21,7 +21,7 @@ defmodule PracticeWeb.PageControllerTest do
     assert html_response(conn, 200) =~ "17"
   end
 
-  # TODO: Write a controller test for palindrome.
+  # TODO: Write a controller test for palindrome. DONE
   test "palindrome racecar", %{conn: conn} do
     conn = post conn, "/palindrome", %{"x" => "racecar"}
     assert html_response(conn, 200) =- "true"
