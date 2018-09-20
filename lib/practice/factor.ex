@@ -1,6 +1,18 @@
 defmodule Practice.Factor do
   def factor(x) do
-    Enum.reverse(get_factors_by_2(x, []))
+    cond do
+      is_number(x) ->
+        Enum.reverse(get_factors_by_2(x, []))
+      is_bitstring(x) ->
+        Enum.reverse(get_factors_by_2(parse_integer(x), []))
+      true ->
+        raise "Invalid type passed"
+    end
+  end
+
+  def parse_integer(text) do
+    {num, _} = Integer.parse(text)
+    num
   end
 
   def factor(0) do
