@@ -1,26 +1,36 @@
 defmodule Practice.Factor do
-  def parse_float(text) do
-    {num, _} = Float.parse(text)
-    num
+  def factor(x) do
+    Enum.reverse(get_factors_by_2(x, []))
   end
 
+  def factor(0) do
+    []
+  end
 
-  # TODO prime factor function, look over other requirements
-  def factor(x) do
-    # This should handle +,-,*,/ with order of operations,
-    # but doesn't need to handle parens.
-    x
-    |> String.split(~r/\s+/)
-    |> hd
-    |> parse_float
-    |> :math.sqrt()
+  def get_factors_by_2(1, factors) do
+    factors
+  end
 
-    # Hint:
-    # expr
-    # |> split
-    # |> tag_tokens  (e.g. [+, 1] => [{:op, "+"}, {:num, 1.0}]
-    # |> convert to postfix
-    # |> reverse to prefix
-    # |> evaluate as a stack calculator using pattern matching
+  def get_factors_by_2(num, factors) do
+    if rem(num, 2) == 0 do
+      get_factors_by_2(Kernel.trunc(num / 2), [2 | factors])
+    else
+      get_factors_odds(num, factors, 3)
+    end
+  end
+
+  def get_factors_odds(1, factors, _) do
+    factors
+  end
+
+  def get_factors_odds(num, factors, curr_num) do
+    cond do
+      num / 2 < curr_num ->
+        [num | factors]
+      rem(num, curr_num) == 0 ->
+        get_factors_odds(Kernel.trunc(num / curr_num), [curr_num | factors], curr_num)
+      true ->
+        get_factors_odds(num, factors, curr_num + 2)
+    end
   end
 end
