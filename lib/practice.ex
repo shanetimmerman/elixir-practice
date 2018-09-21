@@ -22,6 +22,7 @@ defmodule Practice do
   end
 
   def palindrome(str) do
+    # Is it a palindrome? If same backwards as forwards, then return true. Else false.
     s = String.trim(str)
     String.reverse(s) == s
   end
